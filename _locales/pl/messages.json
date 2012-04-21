@@ -1,0 +1,32 @@
+﻿{
+	"GENERAL_SAYS": {
+		"message": "mówi"
+	},
+	"GENERAL_SECONDS": {
+		"message": "sekund"
+	},
+	"GENERAL_VERSION": {
+		"message": "Wersja"
+	},
+	"NOTIFICATION_FANNED": {
+		"message": "Ktoś został twoim fanem na plug.dj!"
+	},
+	"NOTIFICATION_ISNOWPLAYING": {
+		"message": "gra teraz"
+	},
+	"NOTIFICATION_ISNOWYOURFAN": {
+		"message": "jest teraz twoim fanem!"
+	},
+	"NOTIFICATION_MENTIONED": {
+		"message": "Ktoś o tobie wspomniał na plug.dj!"
+	},
+	"SETTINGS_NOTIFICATIONTIMEOUT": {
+		"message": "Czas notyfikacji"
+	},
+	"SETTINGS_RESET": {
+		"message": "Reset"
+	},
+	"SETTINGS_SAVE": {
+		"message": "Zapisz ustawienia"
+	}
+}

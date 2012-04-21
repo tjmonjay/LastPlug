@@ -1,0 +1,29 @@
+{
+	"name": "LastPlug",
+	"version": "0.1",
+	"manifest_version": 2,
+	"description": "Some tweaks for plug.dj, also last.fm scrobbling.",
+	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+	"default_locale": "en",
+	"options_page": "settings.html",
+	"background": {
+		"scripts": ["js/background.js"]
+	},
+	"content_scripts": [
+		{
+			"matches": [ "http://www.plug.dj/*", "http://plug.dj/*"],
+			"js": ["js/jquery-1.7.2.min.js", "js/jquery.url.js", "js/contentscript.js"]
+		}
+	],
+	"page_action": {
+		"default_icon": "img/icon128.png",
+		"default_title": "LastPlug Settings",
+		"default_popup": "settings.html"
+	},
+	"permissions": [
+		"notifications", "tabs"
+	],
+	"web_accessible_resources": [
+		"js/script.js", "js/jquery-1.7.2.min.js", "js/jquery.url.js", "js/functions.js"
+	]
+}
