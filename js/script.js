@@ -27,7 +27,7 @@ API.addEventListener(API.USER_FAN, lpUserFanEventFunction);
 
 function lpDjAdvanceEventFunction(obj) {
 	if(obj.media) {
-		var jsondata = { "avatar": obj.dj.avatarID, "username": obj.dj.username, "song": obj.media.author + " - " + obj.media.title };
+		var jsondata = { "avatar": obj.dj.avatarID, "username": encodeURIComponent(obj.dj.username), "song": encodeURIComponent(obj.media.author) + " - " + encodeURIComponent(obj.media.title), "type": "DJ Advances" };
 		var json = JSON.stringify(jsondata);
 		fireLpDjAdvanceEvent(json);
 	}
@@ -35,14 +35,14 @@ function lpDjAdvanceEventFunction(obj) {
 
 function lpMessageEventFunction(data) {
 	if(data.message.indexOf("@" + API.getSelf().username) > -1) {
-		var jsondata = {"from": data.from, "message": encodeURIComponent(data.message), "avatar": API.getUser(data.fromID).avatarID};
+		var jsondata = {"from": encodeURIComponent(data.from), "message": encodeURIComponent(data.message), "avatar": API.getUser(data.fromID).avatarID, "type": "Mentions"};
 		var json = JSON.stringify(jsondata);
 		fireLpMessageEvent(json);
 	}
 }
 
 function lpUserFanEventFunction(user) {
-	var jsondata = {"avatar": user.avatarID, "from": user.username}
+	var jsondata = {"avatar": user.avatarID, "from": encodeURIComponent(user.username), "type": "Fans"}
 	var json = JSON.stringify(jsondata);
 	fireLpUserFanEvent(json);
 }
