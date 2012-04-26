@@ -8,23 +8,26 @@ ga.src = 'https://ssl.google-analytics.com/ga.js';
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-	
-	var notification = webkitNotifications.createHTMLNotification('notification.html?title=' + request.title + '&message=' + request.message + '&avatar=' + request.avatar);
-	
-	notification.show();
-	
-	_gaq.push(['_trackEvent', 'LastPlug Stats', 'Notifications Served', chrome.app.getDetails().version]);
-	
-	_gaq.push(['_trackEvent', 'LastPlug Stats', request.type, chrome.app.getDetails().version]);
-	
-	
-	var notificationTimeout = window.localStorage["notificationTimeout"];
-	if(notificationTimeout == undefined) {
-		notificationTimeout = 5000;
+	if(request.method == "getLocalStorage") {
+		sendResponse({value: localStorage[request.value]});
+	} else {
+		var notification = webkitNotifications.createHTMLNotification('notification.html?title=' + request.title + '&message=' + request.message + '&avatar=' + request.avatar);
+		
+		notification.show();
+		
+		_gaq.push(['_trackEvent', 'LastPlug Stats', 'Notifications Served', chrome.app.getDetails().version]);
+		
+		_gaq.push(['_trackEvent', 'LastPlug Stats', request.type, chrome.app.getDetails().version]);
+		
+		
+		var notificationTimeout = window.localStorage["notificationTimeout"];
+		if(notificationTimeout == undefined) {
+			notificationTimeout = 5000;
+		}
+		
+		setTimeout(function() { notification.cancel(); }, notificationTimeout);
+		sendResponse({returnMsg: "All good!"});
 	}
-	
-	setTimeout(function() { notification.cancel(); }, notificationTimeout);
-	sendResponse({returnMsg: "All good!"});
 });
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	if(tab.url.indexOf('plug.dj') > -1) {

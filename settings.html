@@ -8,17 +8,24 @@
 			body {
 				font-family: "Arial", "Verdana", "Helvetica", sans-serif;
 				width: 300px;
+				text-shadow: 2px 2px 10px #999;
 			}
 			h1 {
 				margin: 0;
 				padding: 0;
 			}
+			h2 {
+				margin: 0;
+				padding: 0;
+				font-size: 16px;
+			}
 			img {
 				float: left;
 			}
-			#about {
+			.about {
 				background-color: #DDD;
 				border: 1px solid #CCC;
+				border-radius: 5px;
 				padding: 5px;
 				font-size: 11px;
 			}
@@ -35,25 +42,46 @@
 			#version {
 				font-size: 12px;
 			}
+			.category {
+				background-color: #EEE;
+				border: 1px solid #DDD;
+				border-radius: 5px;
+				padding: 5px;
+				font-size: 12px;
+			}
 		</style>
 	</head>
 	<body>
 		<div id="session"></div>
-		<img width="48" height="48" src="img/icon128.png" />
+		<img width="48" height="48" src="img/icon.png" />
 		<span id="name">
 			LastPlug
 			<br />
-			<span id="version"><span i18n="GENERAL_VERSION">Version</span> 0.1.1</span>
+			<span id="version"><span i18n="GENERAL_VERSION">Version</span> 0.2</span>
 		</span><br /><br /><br />
-		<span i18n="SETTINGS_NOTIFICATIONTIMEOUT">Notification Timeout</span>: <input size="4" id="notificationTimeout" /> <span i18n="GENERAL_SECONDS">seconds</span>
+		<div class="category">
+			<h2>General Settings</h2>
+			<span i18n="SETTINGS_NOTIFICATIONTIMEOUT">Notification Timeout</span>: <input size="4" id="notificationTimeout" /> <span i18n="GENERAL_SECONDS">seconds</span>
+		</div><br />
+		<div class="category">
+			<h2>Enable/Disable Notifications</h2>
+			<input type="checkbox" id="enable_chatmessages" name="enable_chatmessages" />Chat Messages<br />
+			<input type="checkbox" id="enable_djadvances" name="enable_djadvances" />DJ Advances<br />
+			<input type="checkbox" id="enable_fans" name="enable_fans" />Fans<br />
+			<input type="checkbox" id="enable_mentions" name="enable_mentions" />Mentions
+		</div>
 		<br />
 		<button id="saveSettings"><span i18n="SETTINGS_SAVE">Save settings</span></button>
 		<button id="eraseSettings"><span i18n="SETTINGS_RESET">Reset</span></button>
 		<br /><br />
-		<div id="about">
+		<div class="about">
 			Contribute to the code at <a target="_blank" href="http://github.com/Maxorq/LastPlug">GitHub</a><br />
 			Translate to your language at <a target="_blank" href="http://crowdin.net/project/lastplug">Crowdin</a><br />
 			Report bugs, issues and suggestions at <a target="_blank" href="http://github.com/Maxorq/LastPlug/issues">GitHub</a>
+		</div><br />
+		<div class="about">
+			Created by Maciej Benke (Maxorq)<br />
+			Thanks to: Beat Scence, NoizeRebel, Steven, <a target="_blank" href="http://soundcloud.com/vinylion">VinyLion</a>
 		</div>
 	</body>
 </head>

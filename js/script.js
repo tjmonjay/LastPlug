@@ -35,10 +35,12 @@ function lpDjAdvanceEventFunction(obj) {
 
 function lpMessageEventFunction(data) {
 	if(data.message.indexOf("@" + API.getSelf().username) > -1) {
-		var jsondata = {"from": encodeURIComponent(data.from), "message": encodeURIComponent(data.message), "avatar": API.getUser(data.fromID).avatarID, "type": "Mentions"};
-		var json = JSON.stringify(jsondata);
-		fireLpMessageEvent(json);
+		var jsondata = {"from": encodeURIComponent(data.from), "message": encodeURIComponent(data.message), "avatar": API.getUser(data.fromID).avatarID, "type": "Mentions", "bit": "1"};
+	} else {
+		var jsondata = {"from": encodeURIComponent(data.from), "message": encodeURIComponent(data.message), "avatar": API.getUser(data.fromID).avatarID, "type": "Chat Messages", "bit": "0"};
 	}
+	var json = JSON.stringify(jsondata);
+	fireLpMessageEvent(json);	
 }
 
 function lpUserFanEventFunction(user) {
