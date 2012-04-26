@@ -27,7 +27,7 @@ API.addEventListener(API.USER_FAN, lpUserFanEventFunction);
 
 function lpDjAdvanceEventFunction(obj) {
 	if(obj.media) {
-		var jsondata = { "avatar": obj.dj.avatarID, "username": encodeURIComponent(obj.dj.username), "song": encodeURIComponent(obj.media.author) + " - " + encodeURIComponent(obj.media.title), "type": "DJ Advances" };
+		var jsondata = { "avatar": obj.dj.avatarID, "username": encodeURIComponent(obj.dj.username), "song": encodeURIComponent(obj.media.author) + " - " + encodeURIComponent(obj.media.title), "duration": encodeURIComponent(obj.media.duration), "type": "DJ Advances" };
 		var json = JSON.stringify(jsondata);
 		fireLpDjAdvanceEvent(json);
 	}
