@@ -5,9 +5,21 @@
 		<script src="js/jquery.url.js"></script>
 		<style type="text/css">
 			body {
-				background: -webkit-linear-gradient(white, #CCC);
+				background: -webkit-linear-gradient(#444, #111);
+				color: white;
 				font-family: "Arial", "Verdana", "Helvetica", sans-serif;
 				font-size: 13px;
+				margin: 0;
+				padding: 0;
+			}
+			#color {
+				width: 100%;
+				margin: 0;
+				padding: 0;
+				height: 8px;
+			}
+			#content {
+				padding: 7px;
 			}
 			#title {
 				font-weight: bold;
@@ -16,12 +28,28 @@
 				float: left;
 				margin-right: 5px;
 			}
+			.color_blue {
+				background: -webkit-linear-gradient(#111, #007dff);
+			}
+			.color_cyan {
+				background: -webkit-linear-gradient(#111, #4cd5ff);
+			}
+			.color_green {
+				background: -webkit-linear-gradient(#111, lime);
+			}
+			.color_orange {
+				background: -webkit-linear-gradient(#111, #FFA700);
+			}
+			
 		</style>
 	</head>
 	<body>
-		<img id="avatar" width="32" height="32" src="icon.png" />
-		<span id="title">Title</span><br />
-		<span id="message">Message</span>
+		<div id="content">
+			<img id="avatar" width="32" height="32" src="img/icon.png" />
+			<span id="title">Title</span><br />
+			<span id="message">Message</span>
+		</div>
+		<div id="color"></div>
 		<script src="js/notification.js"></script>
 	</body>
 </html>

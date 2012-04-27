@@ -11,7 +11,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	if(request.method == "getLocalStorage") {
 		sendResponse({value: localStorage[request.value]});
 	} else {
-		var notification = webkitNotifications.createHTMLNotification('notification.html?title=' + request.title + '&message=' + request.message + '&avatar=' + request.avatar);
+		var notification = webkitNotifications.createHTMLNotification('notification.html?title=' + request.title + '&message=' + request.message + '&avatar=' + request.avatar + '&color=' + request.color);
 		
 		notification.show();
 		
