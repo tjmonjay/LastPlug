@@ -1,6 +1,7 @@
 var defaultNotificationTimeout = 5000;
 var defaultChatMessages = false;
 var defaultDjAdvances = true;
+var defaultDjUpdates = true;
 var defaultFans = true;
 var defaultMentions = true;
 
@@ -8,6 +9,7 @@ function loadSettings() {
 	var notificationTimeout = window.localStorage["notificationTimeout"];
 	var enableChatMessages = window.localStorage["enable_chatmessages"];
 	var enableDjAdvances = window.localStorage["enable_djadvances"];
+	var enableDjUpdates = window.localStorage["enable_djupdates"];
 	var enableFans	= window.localStorage["enable_fans"];
 	var enableMentions = window.localStorage["enable_mentions"];
 	
@@ -19,6 +21,9 @@ function loadSettings() {
 	}
 	if(enableDjAdvances == undefined) {
 		enableDjAdvances = defaultDjAdvances;
+	}
+	if(enableDjUpdates == undefined) {
+		enableDjUpdates = defaultDjUpdates;
 	}
 	if(enableFans == undefined) {
 		enableFans = defaultFans;
@@ -32,6 +37,9 @@ function loadSettings() {
 	}
 	if(enableDjAdvances == "true") {
 		$('#enable_djadvances').click()
+	}
+	if(enableDjUpdates == "true") {
+		$('#enable_djupdates').click()
 	}
 	if(enableFans == "true") {
 		$('#enable_fans').click()
@@ -54,6 +62,11 @@ function saveSettings() {
 		window.localStorage["enable_djadvances"] = true;
 	} else {
 		window.localStorage["enable_djadvances"] = false;
+	}
+	if($('#enable_djupdates:checked').val() !== undefined) {
+		window.localStorage["enable_djupdates"] = true;
+	} else {
+		window.localStorage["enable_djupdates"] = false;
 	}
 	if($('#enable_fans:checked').val() !== undefined) {
 		window.localStorage["enable_fans"] = true;

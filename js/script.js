@@ -1,5 +1,7 @@
 var djAdvanceEvent = document.createEvent('Event');
 djAdvanceEvent.initEvent('lpDjAdvanceEvent', true, true);
+var djUpdateEvent = document.createEvent('Event');
+djUpdateEvent.initEvent('lpDjUpdateEvent', true, true);
 var messageEvent = document.createEvent('Event');
 messageEvent.initEvent('lpMessageEvent', true, true);
 var userFanEvent = document.createEvent('Event')
@@ -9,6 +11,11 @@ function fireLpDjAdvanceEvent(data) {
 	hiddenDiv = document.getElementById('lpDjAdvanceEventDiv');	
 	hiddenDiv.innerText = data
 	hiddenDiv.dispatchEvent(djAdvanceEvent);
+}
+function fireLpDjUpdateEvent(data) {
+	hiddenDiv = document.getElementById('lpDjUpdateEventDiv');	
+	hiddenDiv.innerText = data
+	hiddenDiv.dispatchEvent(djUpdateEvent);
 }
 function fireLpMessageEvent(data) {
 	hiddenDiv = document.getElementById('lpMessageEventDiv');
@@ -23,6 +30,7 @@ function fireLpUserFanEvent(data) {
 
 API.addEventListener(API.CHAT, lpMessageEventFunction);
 API.addEventListener(API.DJ_ADVANCE, lpDjAdvanceEventFunction);
+API.addEventListener(API.DJ_UPDATE, lpDjUpdateEventFunction);
 API.addEventListener(API.USER_FAN, lpUserFanEventFunction);
 
 function lpDjAdvanceEventFunction(obj) {
@@ -32,7 +40,14 @@ function lpDjAdvanceEventFunction(obj) {
 		fireLpDjAdvanceEvent(json);
 	}
 }
-
+function lpDjUpdateEventFunction(djs) {
+	var users = API.getDJs();
+	if(users[4].username == API.getSelf().username) {
+		var jsondata = { "avatar": API.getSelf().avatarID, "song": encodeURIComponent($('#up-next').html()), "type": "Booth Notifications" };
+		var json = JSON.stringify(jsondata);
+		fireLpDjUpdateEvent(json);
+	}
+}
 function lpMessageEventFunction(data) {
 	if(data.message.indexOf("@" + API.getSelf().username) > -1) {
 		var jsondata = {"from": encodeURIComponent(data.from), "message": encodeURIComponent(data.message), "avatar": API.getUser(data.fromID).avatarID, "type": "Mentions", "bit": "1"};

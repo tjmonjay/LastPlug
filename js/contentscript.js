@@ -9,8 +9,9 @@ function createHiddenDiv(divname) {
 	document.body.appendChild(t);
 }
 
-createHiddenDiv("lpMessageEventDiv")
 createHiddenDiv("lpDjAdvanceEventDiv")
+createHiddenDiv("lpDjUpdateEventDiv")
+createHiddenDiv("lpMessageEventDiv")
 createHiddenDiv("lpUserFanEventDiv")
 
 document.getElementById('lpDjAdvanceEventDiv').addEventListener('lpDjAdvanceEvent', function() {
@@ -19,6 +20,15 @@ document.getElementById('lpDjAdvanceEventDiv').addEventListener('lpDjAdvanceEven
 			var eventData = document.getElementById('lpDjAdvanceEventDiv').innerText;
 			var data = JSON.parse(eventData);
 			chrome.extension.sendRequest({avatar: 'http://www.plug.dj/images/avatars/thumbs/' + data.avatar + '.png', title: data.username + ' ' + chrome.i18n.getMessage("NOTIFICATION_ISNOWPLAYING"), message: data.song + " <b>(" + secondsToString(decodeURIComponent(data.duration)) + ")</b>", color: "orange"});
+		}
+	});
+});
+document.getElementById('lpDjUpdateEventDiv').addEventListener('lpDjUpdateEvent', function() {
+	chrome.extension.sendRequest({method: "getLocalStorage", value: "enable_djupdates"}, function(response) {
+		if(response.value == "true") {
+			var eventData = document.getElementById('lpDjUpdateEventDiv').innerText;
+			var data = JSON.parse(eventData);
+			chrome.extension.sendRequest({avatar: 'http://www.plug.dj/images/avatars/thumbs/' + data.avatar + '.png', title: 'You are close to the booth!', message: 'You will play ' + data.song, color: "pink"});
 		}
 	});
 });
