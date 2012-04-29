@@ -32,13 +32,15 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	if(tab.url.indexOf('plug.dj') > -1) {
 		chrome.pageAction.show(tabId);
-		if(window.localStorage['lastVersion'] !== undefined) {
-			if(window.localStorage['lastVersion'] !== chrome.app.getDetails().version) {
-				showNotification('LastPlug have just been updated!', 'Updated from ' + window.localStorage['lastVersion'] + " to " + chrome.app.getDetails().version + '<br /><a href="http://github.com/Maxorq/LastPlug/wiki/Changelog">See the changelog here...</a>', 'img/icon.png', 'red');
+		if(window.localStorage['enable_updates'] == "true") {
+			if(window.localStorage['lastVersion'] !== undefined) {
+				if(window.localStorage['lastVersion'] !== chrome.app.getDetails().version) {
+					showNotification('LastPlug have just been updated!', 'Updated from ' + window.localStorage['lastVersion'] + " to " + chrome.app.getDetails().version + '<br /><a href="http://github.com/Maxorq/LastPlug/wiki/Changelog">See the changelog here...</a>', 'img/icon.png', 'red');
+					window.localStorage['lastVersion'] = chrome.app.getDetails().version;
+				}
+			} else {
 				window.localStorage['lastVersion'] = chrome.app.getDetails().version;
 			}
-		} else {
-			window.localStorage['lastVersion'] = chrome.app.getDetails().version;
 		}
 	}
 });

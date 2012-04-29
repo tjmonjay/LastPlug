@@ -4,6 +4,7 @@ var defaultDjAdvances = true;
 var defaultDjUpdates = true;
 var defaultFans = true;
 var defaultMentions = true;
+var defaultUpdates = true;
 
 function loadSettings() {
 	var notificationTimeout = window.localStorage["notificationTimeout"];
@@ -12,6 +13,7 @@ function loadSettings() {
 	var enableDjUpdates = window.localStorage["enable_djupdates"];
 	var enableFans	= window.localStorage["enable_fans"];
 	var enableMentions = window.localStorage["enable_mentions"];
+	var enableUpdates = window.localStorage["enable_updates"];
 	
 	if(notificationTimeout == undefined) {
 		notificationTimeout = defaultNotificationTimeout;
@@ -31,6 +33,9 @@ function loadSettings() {
 	if(enableMentions == undefined) {
 		enableMentions = defaultMentions;
 	}
+	if(enableUpdates == undefined) {
+		enableUpdates = defaultUpdates;
+	}
 	
 	if(enableChatMessages == "true") {
 		$('#enable_chatmessages').click()
@@ -46,6 +51,9 @@ function loadSettings() {
 	}
 	if(enableMentions == "true") {
 		$('#enable_mentions').click()
+	}
+	if(enableUpdates == "true") {
+		$('#enable_updates').click()
 	}
 	
 	$('#notificationTimeout').val(notificationTimeout / 1000);
@@ -77,6 +85,11 @@ function saveSettings() {
 		window.localStorage["enable_mentions"] = true;
 	} else {
 		window.localStorage["enable_mentions"] = false;
+	}
+	if($('#enable_updates:checked').val() !== undefined) {
+		window.localStorage["enable_updates"] = true;
+	} else {
+		window.localStorage["enable_updates"] = false;
 	}
 	
 	$('#session').html('Saved!')
