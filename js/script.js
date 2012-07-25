@@ -65,8 +65,8 @@ function lpMessageEventFunction(data) {
 		if($(this).html() == "[VIDJ] EXƎ") { 
 			$(this).css("color", "brown"); 
 		}
-		if($(this).html() == "One time, at band camp") { 
-			$(this).css("color", "darkBlue"); 
+		if($(this).html() == "Maxorq") { 
+			$(this).css({'color' : 'red', 'background-image' : "url('img/sparkle.gif')"});
 		}
 		if($(this).html() == ".ŃōıɀɛƦɇƀȇʟ`") { 
 			$(this).css({'color' : '#baff00', 'background-image' : "url('img/sparkle.gif')"}); 
