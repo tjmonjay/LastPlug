@@ -33,6 +33,17 @@ API.addEventListener(API.DJ_ADVANCE, lpDjAdvanceEventFunction);
 API.addEventListener(API.DJ_UPDATE, lpDjUpdateEventFunction);
 API.addEventListener(API.USER_FAN, lpUserFanEventFunction);
 
+setTimeout(function() {
+	$.each(Models.room.getAudience(), function(index, value) { 
+		value.timeIdle = 1;
+	});
+}, 5000);
+setInterval(function() {
+	$.each(Models.room.getAudience(), function(index, value) { 
+		value.timeIdle++;
+	});
+}, 1000);
+
 function lpDjAdvanceEventFunction(obj) {
 	if(obj.media) {
 		var jsondata = { "avatar": obj.dj.avatarID, "username": encodeURIComponent(obj.dj.username), "song": encodeURIComponent(obj.media.author) + " - " + encodeURIComponent(obj.media.title), "duration": encodeURIComponent(obj.media.duration), "type": "DJ Advances" };
