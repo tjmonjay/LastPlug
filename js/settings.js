@@ -17,24 +17,32 @@ function loadSettings() {
 	
 	if(notificationTimeout == undefined) {
 		notificationTimeout = defaultNotificationTimeout;
+		window.localStorage["notificationTimeout"] = defaultNotificationTimeout;
 	}
 	if(enableChatMessages == undefined) {
 		enableChatMessages = defaultChatMessages;
+		window.localStorage["enable_chatmessages"] = defaultChatMessages;
 	}
 	if(enableDjAdvances == undefined) {
 		enableDjAdvances = defaultDjAdvances;
+		window.localStorage["enable_djadvances"] = defaultDjAdvances;
 	}
 	if(enableDjUpdates == undefined) {
 		enableDjUpdates = defaultDjUpdates;
+		window.localStorage["enable_djupdates"] = defaultDjUpdates;
 	}
 	if(enableFans == undefined) {
 		enableFans = defaultFans;
+		window.localStorage["enable_fans"] = defaultFans;
 	}
 	if(enableMentions == undefined) {
 		enableMentions = defaultMentions;
+		window.localStorage["enable_mentions"] = defaultMentions;
 	}
 	if(enableUpdates == undefined) {
 		enableUpdates = defaultUpdates;
+		window.localStorage["enable_updates"] = defaultUpdates;
+		loadSettings();
 	}
 	
 	if(enableChatMessages == "true") {
