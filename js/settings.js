@@ -6,6 +6,8 @@ var defaultFans = true;
 var defaultMentions = true;
 var defaultUpdates = true;
 
+var defaultAutoWoot = false;
+
 function loadSettings() {
 	var notificationTimeout = window.localStorage["notificationTimeout"];
 	var enableChatMessages = window.localStorage["enable_chatmessages"];
@@ -14,6 +16,13 @@ function loadSettings() {
 	var enableFans	= window.localStorage["enable_fans"];
 	var enableMentions = window.localStorage["enable_mentions"];
 	var enableUpdates = window.localStorage["enable_updates"];
+	var enableAutoWoot = window.localStorage["enable_autowoot"];
+	
+	var loadagain = false;
+	
+	if((notificationTimeout == undefined) || (enableChatMessages == undefined) || (enableAutoWoot == undefined)) {
+		loadagain = true;
+	}
 	
 	if(notificationTimeout == undefined) {
 		notificationTimeout = defaultNotificationTimeout;
@@ -42,6 +51,13 @@ function loadSettings() {
 	if(enableUpdates == undefined) {
 		enableUpdates = defaultUpdates;
 		window.localStorage["enable_updates"] = defaultUpdates;
+	}
+	if(enableAutoWoot == undefined) {
+		enableAutoWoot = defaultAutoWoot;
+		window.localStorage["enable_autowoot"] = defaultAutoWoot;
+	}
+	
+	if(loadagain) {
 		loadSettings();
 	}
 	
@@ -62,6 +78,9 @@ function loadSettings() {
 	}
 	if(enableUpdates == "true") {
 		$('#enable_updates').click()
+	}
+	if(enableAutoWoot == "true") {
+		$('#enable_autowoot').click()
 	}
 	
 	$('#notificationTimeout').val(notificationTimeout / 1000);
@@ -99,11 +118,24 @@ function saveSettings() {
 	} else {
 		window.localStorage["enable_updates"] = false;
 	}
+	if($('#enable_autowoot:checked').val() !== undefined) {
+		window.localStorage["enable_autowoot"] = true;
+	} else {
+		window.localStorage["enable_autowoot"] = false;
+	}
 	
 	$('#session').html('Saved!')
 }
 function eraseSettings() {
 	window.localStorage.removeItem("notificationTimeout");
+	window.localStorage.removeItem("enable_chatmessages");
+	window.localStorage.removeItem("enable_djadvances");
+	window.localStorage.removeItem("enable_djupdates");
+	window.localStorage.removeItem("enable_fans");
+	window.localStorage.removeItem("enable_mentions");
+	window.localStorage.removeItem("enable_updates");
+	window.localStorage.removeItem("enable_autowoot");
+	
 	window.location.reload();
 }
 

@@ -9,31 +9,18 @@ function createHiddenDiv(divname) {
 	document.body.appendChild(t);
 }
 
+createHiddenDiv("lpChatEventDiv")
 createHiddenDiv("lpDjAdvanceEventDiv")
 createHiddenDiv("lpDjUpdateEventDiv")
-createHiddenDiv("lpMessageEventDiv")
 createHiddenDiv("lpUserFanEventDiv")
 
-document.getElementById('lpDjAdvanceEventDiv').addEventListener('lpDjAdvanceEvent', function() {
-	chrome.extension.sendRequest({method: "getLocalStorage", value: "enable_djadvances"}, function(response) {
-		if(response.value == "true") {
-			var eventData = document.getElementById('lpDjAdvanceEventDiv').innerText;
-			var data = JSON.parse(eventData);
-			chrome.extension.sendRequest({avatar: 'http://www.plug.dj/images/avatars/thumbs/' + data.avatar + '.png', title: data.username + ' ' + chrome.i18n.getMessage("NOTIFICATION_ISNOWPLAYING"), message: data.song + " <b>(" + secondsToString(decodeURIComponent(data.duration)) + ")</b>", color: "orange"});
-		}
-	});
-});
-document.getElementById('lpDjUpdateEventDiv').addEventListener('lpDjUpdateEvent', function() {
-	chrome.extension.sendRequest({method: "getLocalStorage", value: "enable_djupdates"}, function(response) {
-		if(response.value == "true") {
-			var eventData = document.getElementById('lpDjUpdateEventDiv').innerText;
-			var data = JSON.parse(eventData);
-			chrome.extension.sendRequest({avatar: 'http://www.plug.dj/images/avatars/thumbs/' + data.avatar + '.png', title: 'You are close to the booth!', message: 'You will play ' + data.song, color: "pink"});
-		}
-	});
-});
-document.getElementById('lpMessageEventDiv').addEventListener('lpMessageEvent', function() {
-	var eventData = document.getElementById('lpMessageEventDiv').innerText;
+$('#booth-canvas').after('<span id="idle-timer-1" style="width: 30px; text-align: center; position: absolute; top: 75%; left: 57px; padding: 4px;">0:00</span>');
+$('#booth-canvas').after('<span id="idle-timer-2" style="width: 30px; text-align: center; position: absolute; top: 75%; left: 133px; padding: 4px;">0:00</span>');
+$('#booth-canvas').after('<span id="idle-timer-3" style="width: 30px; text-align: center; position: absolute; top: 75%; left: 207px; padding: 4px;">0:00</span>');
+$('#booth-canvas').after('<span id="idle-timer-4" style="width: 30px; text-align: center; position: absolute; top: 75%; left: 284px; padding: 4px;">0:00</span>');
+
+document.getElementById('lpChatEventDiv').addEventListener('lpChatEvent', function() {
+	var eventData = document.getElementById('lpChatEventDiv').innerText;
 	var data = JSON.parse(eventData);
 	
 	chrome.extension.sendRequest({method: "getLocalStorage", value: "enable_mentions"}, function(response) {
@@ -51,6 +38,32 @@ document.getElementById('lpMessageEventDiv').addEventListener('lpMessageEvent', 
 		}
 	});
 });
+
+document.getElementById('lpDjAdvanceEventDiv').addEventListener('lpDjAdvanceEvent', function() {
+	chrome.extension.sendRequest({method: "getLocalStorage", value: "enable_djadvances"}, function(response) {
+		var eventData = document.getElementById('lpDjAdvanceEventDiv').innerText;
+		var data = JSON.parse(eventData);
+		if(response.value == "true") {
+			chrome.extension.sendRequest({avatar: 'http://www.plug.dj/images/avatars/thumbs/' + data.avatar + '.png', title: data.username + ' ' + chrome.i18n.getMessage("NOTIFICATION_ISNOWPLAYING"), message: data.song + " <b>(" + secondsToString(decodeURIComponent(data.duration)) + ")</b>", color: "orange"});
+		}
+		chrome.extension.sendRequest({method: "getLocalStorage", value: "enable_autowoot"}, function(anotherresponse) {
+			if((anotherresponse.value == "true") || (data != null)) {
+				$('#button-vote-positive').click();
+			}
+		});
+	});
+});
+
+document.getElementById('lpDjUpdateEventDiv').addEventListener('lpDjUpdateEvent', function() {
+	chrome.extension.sendRequest({method: "getLocalStorage", value: "enable_djupdates"}, function(response) {
+		if(response.value == "true") {
+			var eventData = document.getElementById('lpDjUpdateEventDiv').innerText;
+			var data = JSON.parse(eventData);
+			chrome.extension.sendRequest({avatar: 'http://www.plug.dj/images/avatars/thumbs/' + data.avatar + '.png', title: 'You are close to the booth!', message: 'You will play ' + data.song, color: "pink"});
+		}
+	});
+});
+
 document.getElementById('lpUserFanEventDiv').addEventListener('lpUserFanEvent', function() {
 	chrome.extension.sendRequest({method: "getLocalStorage", value: "enable_fans"}, function(response) {
 		if(response.value == "true") {
