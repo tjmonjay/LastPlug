@@ -47,10 +47,26 @@ setTimeout(function() {
 			value.timeIdle++;
 		});
 		var users = API.getDJs();
-		$('#idle-timer-1').html(secondsToString(Models.room.userHash[users[4].id].timeIdle));
-		$('#idle-timer-2').html(secondsToString(Models.room.userHash[users[3].id].timeIdle));
-		$('#idle-timer-3').html(secondsToString(Models.room.userHash[users[2].id].timeIdle));
-		$('#idle-timer-4').html(secondsToString(Models.room.userHash[users[1].id].timeIdle));
+		if(users[4] != undefined) {
+			$('#idle-timer-1').html(secondsToString(Models.room.userHash[users[4].id].timeIdle));
+		} else {
+			$('#idle-timer-1').html('N/A');
+		}
+		if(users[3] != undefined) {
+			$('#idle-timer-2').html(secondsToString(Models.room.userHash[users[3].id].timeIdle));
+		} else {
+			$('#idle-timer-2').html('N/A');
+		}
+		if(users[2] != undefined) {
+			$('#idle-timer-3').html(secondsToString(Models.room.userHash[users[2].id].timeIdle));
+		} else {
+			$('#idle-timer-3').html('N/A');
+		}
+		if(users[1] != undefined) {
+			$('#idle-timer-4').html(secondsToString(Models.room.userHash[users[1].id].timeIdle));
+		} else {
+			$('#idle-timer-4').html('N/A');
+		}
 	}, 1000);
 }, 10000);
 

@@ -47,7 +47,7 @@ document.getElementById('lpDjAdvanceEventDiv').addEventListener('lpDjAdvanceEven
 			chrome.extension.sendRequest({avatar: 'http://www.plug.dj/images/avatars/thumbs/' + data.avatar + '.png', title: data.username + ' ' + chrome.i18n.getMessage("NOTIFICATION_ISNOWPLAYING"), message: data.song + " <b>(" + secondsToString(decodeURIComponent(data.duration)) + ")</b>", color: "orange"});
 		}
 		chrome.extension.sendRequest({method: "getLocalStorage", value: "enable_autowoot"}, function(anotherresponse) {
-			if((anotherresponse.value == "true") || (data != null)) {
+			if((anotherresponse.value == "true") && (data != null)) {
 				$('#button-vote-positive').click();
 			}
 		});
