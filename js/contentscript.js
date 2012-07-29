@@ -18,7 +18,7 @@ $('#booth-canvas').after('<span id="idle-timer-1" style="width: 30px; text-align
 $('#booth-canvas').after('<span id="idle-timer-2" style="width: 30px; text-align: center; position: absolute; top: 75%; left: 133px; padding: 4px;">0:00</span>');
 $('#booth-canvas').after('<span id="idle-timer-3" style="width: 30px; text-align: center; position: absolute; top: 75%; left: 207px; padding: 4px;">0:00</span>');
 $('#booth-canvas').after('<span id="idle-timer-4" style="width: 30px; text-align: center; position: absolute; top: 75%; left: 284px; padding: 4px;">0:00</span>');
-$('#chat-messages').append('<div class="chat-update"><span class="chat-text" style="color: lime;">LastPlug 0.3.1 enabled!</span></div>');
+$('#chat-messages').append('<div class="chat-update"><span class="chat-text" style="color: lime;">LastPlug 0.3.2 enabled!</span></div>');
 document.getElementById('lpChatEventDiv').addEventListener('lpChatEvent', function() {
 	var eventData = document.getElementById('lpChatEventDiv').innerText;
 	var data = JSON.parse(eventData);
