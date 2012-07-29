@@ -81,7 +81,7 @@ function lpChatEventFunction(data) {
 		var json = JSON.stringify(jsondata);
 		fireLpChatEvent(json);
 	}
-	$('.chat-from-clickable').each(function() {
+	$('span[class*="chat-from"]').each(function() {
 		if($(this).html() == "Master Lucas") { 
 			$(this).css("color", "#1AD71A"); 
 		}
