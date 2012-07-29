@@ -88,7 +88,7 @@ function lpChatEventFunction(data) {
 		if($(this).html() == "[VDJ] EXƎ") { 
 			$(this).css("color", "brown"); 
 		}
-		if($(this).html() == "★ Maxorq") { 
+		if($(this).html() == "Maxorq") { 
 			$(this).css({'color' : 'red', 'background-image' : "url('http://i.imgur.com/N4xZT.gif')"});
 		}
 		if($(this).html() == ".ŃōıɀɛƦɇƀȇʟ`") { 
