@@ -85,14 +85,14 @@ function lpChatEventFunction(data) {
 		if($(this).html() == "Master Lucas") { 
 			$(this).css("color", "#1AD71A"); 
 		}
-		if($(this).html() == "[VDJ] EXƎ") { 
-			$(this).css("color", "brown"); 
+		if($(this).html() == "Bᴀss Aᴅᴅɩcʈ") { 
+			$(this).css('background-image', "url('http://i.imgur.com/N4xZT.gif')"); 
 		}
 		if($(this).html() == "Maxorq") { 
-			$(this).css({'color' : 'red', 'background-image' : "url('http://i.imgur.com/N4xZT.gif')"});
+			$(this).css({'color' : 'orange', 'background-image' : "url('http://i.imgur.com/N4xZT.gif')"});
 		}
-		if($(this).html() == ".ŃōıɀɛƦɇƀȇʟ`") { 
-			$(this).css({'color' : '#baff00', 'background-image' : "url('http://i.imgur.com/N4xZT.gif')"}); 
+		if($(this).html() == ".NoizeRebel`") { 
+			$(this).css('background-image', "url('http://i.imgur.com/N4xZT.gif')"); 
 		}
 	});
 }

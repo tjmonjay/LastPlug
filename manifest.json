@@ -1,8 +1,8 @@
 {
 	"name": "LastPlug",
-	"version": "0.3.2",
+	"version": "0.3.3",
 	"manifest_version": 2,
-	"description": "Some tweaks for plug.dj, also last.fm scrobbling.",
+	"description": "Some tweaks for plug.dj, also last.fm scrobbling (someday).",
 	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
 	"default_locale": "en",
 	"options_page": "settings.html",
@@ -12,7 +12,7 @@
 	},
 	"content_scripts": [
 		{
-			"matches": [ "http://www.plug.dj/*", "http://plug.dj/*"],
+			"matches": [ "http://www.plug.dj/*", "http://plug.dj/*", "http://socketio.plug.dj/*"],
 			"js": ["js/jquery-1.7.2.min.js", "js/jquery.url.js", "js/contentscript.js"]
 		}
 	],
