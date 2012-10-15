@@ -45,26 +45,13 @@ setTimeout(function() {
 		$.each(Models.room.getUsers(), function(index, value) { 
 			value.timeIdle++;
 		});
-		var users = API.getDJs();
-		if(users[4] != undefined) {
-			$('#idle-timer-1').html(secondsToString(Models.room.userHash[users[4].id].timeIdle));
-		} else {
-			$('#idle-timer-1').html('N/A');
-		}
-		if(users[3] != undefined) {
-			$('#idle-timer-2').html(secondsToString(Models.room.userHash[users[3].id].timeIdle));
-		} else {
-			$('#idle-timer-2').html('N/A');
-		}
-		if(users[2] != undefined) {
-			$('#idle-timer-3').html(secondsToString(Models.room.userHash[users[2].id].timeIdle));
-		} else {
-			$('#idle-timer-3').html('N/A');
-		}
-		if(users[1] != undefined) {
-			$('#idle-timer-4').html(secondsToString(Models.room.userHash[users[1].id].timeIdle));
-		} else {
-			$('#idle-timer-4').html('N/A');
+		var djs = API.getDJs();
+		for (var i = 0; i < 5; i++) {
+			if (djs.length > i) {
+				$('#idle-timer-' + i).html(secondsToString(Models.room.userHash[djs[i].id].timeIdle));
+			} else {
+				$('#idle-timer-' + i).html('');
+			}
 		}
 	}, 1000);
 }, 10000);
@@ -105,11 +92,13 @@ function lpDjAdvanceEventFunction(obj) {
 }
 
 function lpDjUpdateEventFunction(djs) {
-	var users = API.getDJs();
-	if(users[4].username == API.getSelf().username || users[3].username == API.getSelf().username || users[2].username == API.getSelf().username || users[1].username == API.getSelf().username) {
-		var jsondata = { "avatar": API.getSelf().avatarID, "song": encodeURIComponent($('#up-next').html()), "type": "Booth Notifications" };
-		var json = JSON.stringify(jsondata);
-		fireLpDjUpdateEvent(json);
+	var djs = API.getDJs();
+	for (var i = 0; i < djs.length; i++) {
+		if (djs[i].username == API.getSelf().username) {
+			var jsondata = { "avatar": API.getSelf().avatarID, "song": encodeURIComponent($('#up-next').html()), "type": "Booth Notifications" };
+			var json = JSON.stringify(jsondata);
+			fireLpDjUpdateEvent(json);
+		}
 	}
 }
 
