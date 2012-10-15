@@ -33,7 +33,6 @@ API.addEventListener(API.DJ_ADVANCE, lpDjAdvanceEventFunction);
 API.addEventListener(API.DJ_UPDATE, lpDjUpdateEventFunction);
 API.addEventListener(API.USER_FAN, lpUserFanEventFunction);
 API.addEventListener(API.USER_JOIN, lpUserJoinEventFunction);
-API.addEventListener(API.VOTE_UPDATE, lpVoteUpdateEventFunction);
 
 setTimeout(function() {
 	$.each(Models.room.getUsers(), function(index, value) { 
@@ -122,10 +121,6 @@ function lpUserFanEventFunction(user) {
 
 function lpUserJoinEventFunction(user) {
 	Models.room.userHash[user.id].timeIdle = 0;
-}
-
-function lpVoteUpdateEventFunction(object) {
-	Models.room.userHash[object.user.id].timeIdle = 0;
 }
 
 function secondsToString(seconds) {
