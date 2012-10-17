@@ -80,6 +80,10 @@ function lpChatEventFunction(data) {
 		if($(this).html() == ".NoizeRebel`") { 
 			$(this).css('background-image', "url('http://i.imgur.com/N4xZT.gif')"); 
 		}
+<!--Could you add this because I am asking SUPER nice?-->
+		if($(this).html() == "Dead Not Sleeping") { 
+			$(this).css({'color' : 'lime', 'background-image' : "url('http://i.imgur.com/N4xZT.gif')"}); 
+		}
 	});
 }
 
